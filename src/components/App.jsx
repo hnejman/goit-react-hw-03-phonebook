@@ -29,13 +29,10 @@ componentDidMount(){
     const temporalName = evt.target.elements.name.value;
     const temporalNumber = evt.target.elements.number.value;
     if (
-        !this.state.contacts.filter(check => {
-          return (
-            check.name
-              .toLowerCase()
-              .includes(temporalName.toLowerCase()) ||
-            check.number.includes(temporalNumber)
-          );
+      !this.state.contacts.filter(check => {
+        return (
+          check.name.toLowerCase() === temporalName.toLowerCase()
+        );
         }).length
     ) {
       const id = nanoid();
@@ -49,8 +46,7 @@ componentDidMount(){
         contacts: prev.contacts.concat(contact)
       }));
     } else {
-      alert(evt.target.elements.name.value + ' already in contacts');
-      return 0;
+      alert(evt.target.elements.name.value + ' already in contacts')
     }
   }
 
