@@ -10,21 +10,13 @@ export class App extends Component {
   }
 
 componentDidMount(){
-  const contacts = [];
-  for (let i = 0; i < localStorage.length; i++){  
-   const id = nanoid(); 
-   let key = localStorage.key(i);
-   const contact = {
-     name: key,
-     number: localStorage.getItem(key),
-     id: id
-   }
-   contacts.push(contact);
-  };
-  this.setState({contacts});
+  const contacts = JSON.parse(localStorage.getItem("contacts"));
+  if (contacts) {
+    this.setState({ contacts });
+  }
 }
 
-  createContact = evt => {
+createContact = evt => {
     evt.preventDefault();
     const temporalName = evt.target.elements.name.value;
     const temporalNumber = evt.target.elements.number.value;
@@ -36,15 +28,16 @@ componentDidMount(){
         }).length
     ) {
       const id = nanoid();
-      const contact = {
+      const newContact = {
         name: temporalName,
         number: temporalNumber,
         id: id,
       };
-      localStorage.setItem(temporalName, temporalNumber);
       this.setState(prev => ({
-        contacts: prev.contacts.concat(contact)
-      }));
+        contacts: prev.contacts.concat(newContact)
+      }))
+      const contacts = [...this.state.contacts, newContact];
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     } else {
       alert(evt.target.elements.name.value + ' already in contacts')
     }
@@ -54,7 +47,7 @@ componentDidMount(){
     const contacts = this.state.contacts.filter(el => {
       return el.id !== e.target.parentNode.id;
     });
-    localStorage.removeItem( e.target.parentNode.textContent.slice(0, -16));
+    localStorage.setItem('contacts', JSON.stringify(contacts));
     this.setState({ contacts });
   };
 
