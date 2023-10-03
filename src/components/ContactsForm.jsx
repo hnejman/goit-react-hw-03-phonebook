@@ -33,6 +33,6 @@ export class ContactsForm extends Component {
     }
 }
 
-ContactsForm.PropTypes = {
+ContactsForm.propTypes = {
   createContact : PropTypes.func
 }
