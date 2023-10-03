@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ContactList } from 'components/ContactList.jsx';
+import { ContactList } from './ContactList';
 
 
 export class Filter extends Component {

@@ -1,7 +1,8 @@
 import { Component } from "react";
+import PropTypes from 'prop-types';
 
 
-export class Contacts extends Component {
+export class ContactsForm extends Component {
 
   
     render(){
@@ -30,4 +31,8 @@ export class Contacts extends Component {
             </> 
         )
     }
+}
+
+ContactsForm.PropTypes = {
+  createContact : PropTypes.func
 }
