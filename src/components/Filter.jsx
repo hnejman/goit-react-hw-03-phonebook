@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { ContactList } from './ContactList';
-
+import PropTypes from 'prop-types';
 
 export class Filter extends Component {
   state = {
@@ -34,3 +34,9 @@ constructor(){
     );
   }
 }
+
+Filter.propTypes = {
+  contacts: PropTypes.array,
+  searchBy: PropTypes.string,
+  deleteItem: PropTypes.func.isRequired
+  }

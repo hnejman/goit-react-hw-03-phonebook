@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const ContactList = ({ contacts, searchBy, deleteItem }) => {
   const elements = contacts.filter(ele => {
     return (
@@ -27,3 +29,9 @@ if (elements.length) {
   )
 }
 };
+
+ContactList.propTypes = {
+  contacts: PropTypes.array,
+  searchBy: PropTypes.string,
+  deleteItem: PropTypes.func.isRequired
+}

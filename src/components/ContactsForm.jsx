@@ -34,5 +34,5 @@ export class ContactsForm extends Component {
 }
 
 ContactsForm.propTypes = {
-  createContact : PropTypes.func
+  createContact : PropTypes.func.isRequired
 }
